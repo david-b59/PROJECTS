@@ -24,7 +24,7 @@ st.markdown("""
 col1, col2, col3 = st.columns([1.5, 1, 1])
 
 with col2:  # Placer l'image dans la colonne centrale
-    st.image("logo_projet2.PNG", width=200)
+    st.image("project-recommandation-cinema/logo_projet2.PNG", width=200)
 
 # Convertir l'image locale en base64
 image_path = Path("logo arriere plan 3.png")
