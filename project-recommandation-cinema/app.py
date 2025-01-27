@@ -10,6 +10,7 @@ from st_on_hover_tabs import on_hover_tabs
 from pathlib import Path
 import base64
 import requests
+import io
 
 
 st.set_page_config(layout="wide")
@@ -372,9 +373,19 @@ elif tabs == 'KPI':
     with col2:  # Placer l'image dans la colonne centrale
         st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/kpi.png?raw=true", width=400)
 
-    # Téléchargement du CS
     url = "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv"
-    df_français_comedy_action = pd.read_csv(url, encoding='utf-8')
+
+    # Télécharger le fichier CSV avec requests
+    response = requests.get(url)
+
+    # Vérifier si la réponse est correcte (status_code 200)
+    if response.status_code == 200:
+    	# Lire le contenu en utilisant l'encodage approprié
+    	df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+    	
+    else:
+    	st.error("Le fichier CSV n'a pas pu être téléchargé.")
+    
 
     # Comptage du nombre de films par genre
     df_count_genres = df_français_comedy_action["genres"].value_counts().reset_index()
