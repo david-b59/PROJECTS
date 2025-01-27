@@ -9,6 +9,7 @@ from sklearn.neighbors import NearestNeighbors
 from st_on_hover_tabs import on_hover_tabs
 from pathlib import Path
 import base64
+import requests
 
 
 st.set_page_config(layout="wide")
@@ -27,78 +28,78 @@ with col2:  # Placer l'image dans la colonne centrale
     st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo_projet2.PNG?raw=true", width=200)
 
 # Convertir l'image locale en base64
-image_path = Path("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo arriere plan 3.png?raw=true")
-if image_path.is_file():
-    with open(image_path, "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
-else:
-    st.error(f"L'image '{image_path.name}' est introuvable dans le dossier : {image_path.parent}")
+# URL de l'image
+image_url = "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo%20arriere%20plan%203.png?raw=true"
 
-# CSS avec image de fond en base64
-css = f'''
-<style>
+# Récupérer l'image via HTTP
+response = requests.get(image_url)  # Télécharge l'image
+if response.status_code == 200:  # Vérifie que la requête a réussi
+    # Convertir l'image en base64
+    img_base64 = base64.b64encode(response.content).decode()
 
-    .stApp {{
-        background-image: url("data:image/png;base64,{img_base64}");
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-position: center;
-        
-    }}
-
-    section[data-testid='stSidebar'] {{
-        background-color: #111;
-        min-width: unset !important;
-        width: unset !important;
-        flex-shrink: unset !important;
-    }}
-
-    button[kind="header"] {{
-        background-color: transparent;
-        color: rgb(180, 167, 141);
-    }}
-
-    @media(hover) {{
-        header[data-testid="stHeader"] {{
-            display: none;
+    # CSS avec image de fond en base64
+    css = f'''
+    <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{img_base64}");
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
         }}
 
-        section[data-testid='stSidebar'] > div {{
-            height: 100%;
-            width: 95px;
-            position: relative;
-            z-index: 1;
-            top: 0;
-            left: 0;
+        section[data-testid='stSidebar'] {{
             background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s ease;
-            padding-top: 60px;
-            white-space: nowrap;
-        }}
-
-        section[data-testid='stSidebar'] > div:hover {{
-            width: 388px;
-          
+            min-width: unset !important;
+            width: unset !important;
+            flex-shrink: unset !important;
         }}
 
         button[kind="header"] {{
-            display: none;
-        }}
-    }}
-
-    @media(max-width: 272px) {{
-        section[data-testid='stSidebar'] > div {{
-            width: 15rem;
+            background-color: transparent;
+            color: rgb(180, 167, 141);
         }}
 
-    }}
+        @media(hover) {{
+            header[data-testid="stHeader"] {{
+                display: none;
+            }}
 
-    /* Ajouter une image de fond */
-</style>
-'''
-st.markdown(css, unsafe_allow_html=True)
+            section[data-testid='stSidebar'] > div {{
+                height: 100%;
+                width: 95px;
+                position: relative;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                background-color: #111;
+                overflow-x: hidden;
+                transition: 0.5s ease;
+                padding-top: 60px;
+                white-space: nowrap;
+            }}
+
+            section[data-testid='stSidebar'] > div:hover {{
+                width: 388px;
+            }}
+
+            button[kind="header"] {{
+                display: none;
+            }}
+        }}
+
+        @media(max-width: 272px) {{
+            section[data-testid='stSidebar'] > div {{
+                width: 15rem;
+            }}
+        }}
+    </style>
+    '''
+    # Application du CSS dans Streamlit
+    st.markdown(css, unsafe_allow_html=True)
+
+else:
+    st.error(f"Erreur lors du chargement de l'image depuis l'URL : {image_url}")
 
 
 with st.sidebar:
