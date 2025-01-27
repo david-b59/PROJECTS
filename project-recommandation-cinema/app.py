@@ -188,7 +188,7 @@ elif tabs == 'Analyse de marché':
 
         # Section "Analyse démographique"
     st.subheader("Analyse démographique")
-    st.image("analyse demographique.png", caption="Analyse des données démographiques liées aux films en 2024.", use_column_width=True)
+    st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/analyse demographique.png?raw=true", caption="Analyse des données démographiques liées aux films en 2024.", use_column_width=True)
 
     # Données
     data = {
@@ -373,7 +373,7 @@ elif tabs == 'KPI':
         st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/kpi.png?raw=true", width=400)
 
     # Téléchargement du CSV
-    df_français_comedy_action = pd.read_csv("df_français_comedy_action03.csv")
+    df_français_comedy_action = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_français_comedy_action03.csv?raw=true")
 
     # Comptage du nombre de films par genre
     df_count_genres = df_français_comedy_action["genres"].value_counts().reset_index()
@@ -435,7 +435,7 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
 
     # Téléchargement du CSV
-    df_français_comedy_action = pd.read_csv("df_français_comedy_action03.csv")
+    df_français_comedy_action = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_français_comedy_action03.csv?raw=true")
     liste_films = df_français_comedy_action['titre_original'].tolist()
 
     # Sélection du film
@@ -458,7 +458,7 @@ elif tabs == 'Système de recommandation':
 
     if nombre_voisin :
         # Chargement des données pour l'entraînement
-        X = pd.read_csv("df_X.csv")
+        X = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
 
         # Séparation des données
         df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
@@ -631,7 +631,7 @@ elif tabs == 'Machine Learning':
 
     if nombre_voisin :
         # Chargement des données pour l'entraînement
-        X = pd.read_csv("df_X.csv")
+        X = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
 
         # Séparation des données
         df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
