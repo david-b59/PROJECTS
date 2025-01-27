@@ -167,21 +167,21 @@ if tabs =='Présentation':
     col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
     
     with col1 :	
-        st.image("logo slack.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo slack.PNG?raw=true")
     with col2 :	
-        st.image("logo imdb.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo imdb.PNG?raw=true")
     with col3 :	
-        st.image("logo tmdb.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo tmdb.PNG?raw=true")
     with col4 :	
-        st.image("logo python.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo python.PNG?raw=true")
     with col5 :	
-        st.image("logo pandas.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo pandas.PNG?raw=true")
     with col6 :	
-        st.image("logo vscode.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo vscode.PNG?raw=true")
     with col7 :	
-        st.image("logo scikit-learn.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo scikit-learn.PNG?raw=true")
     with col8 :	
-        st.image("logo streamlit.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo streamlit.PNG?raw=true")
 
 elif tabs == 'Analyse de marché':
     st.title("Analyse de marché du département du Nord")
@@ -370,7 +370,7 @@ elif tabs == 'KPI':
     col1, col2, col3 = st.columns([1.5, 1, 1])
 
     with col2:  # Placer l'image dans la colonne centrale
-        st.image("kpi.png", width=400)
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/kpi.png?raw=true", width=400)
 
     # Téléchargement du CSV
     df_français_comedy_action = pd.read_csv("df_français_comedy_action03.csv")
