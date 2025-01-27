@@ -446,8 +446,19 @@ elif tabs == 'Système de recommandation':
     st.cache_resource.clear()
     st.cache_data.clear()
 
-    # Téléchargement du CSV
-    df_français_comedy_action = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_français_comedy_action03.csv?raw=true")
+    url = "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv"
+
+    # Télécharger le fichier CSV avec requests
+    response = requests.get(url)
+
+    # Vérifier si la réponse est correcte (status_code 200)
+    if response.status_code == 200:
+    	# Lire le contenu en utilisant l'encodage approprié
+    	df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+    	
+    else:
+    	st.error("Le fichier CSV n'a pas pu être téléchargé.")
+    
     liste_films = df_français_comedy_action['titre_original'].tolist()
 
     # Sélection du film
