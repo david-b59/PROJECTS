@@ -372,8 +372,9 @@ elif tabs == 'KPI':
     with col2:  # Placer l'image dans la colonne centrale
         st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/kpi.png?raw=true", width=400)
 
-    # Téléchargement du CSV
-    df_français_comedy_action = pd.read_csv("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_français_comedy_action03.csv?raw=true")
+    # Téléchargement du CS
+    url = "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv"
+    df_français_comedy_action = pd.read_csv(url)
 
     # Comptage du nombre de films par genre
     df_count_genres = df_français_comedy_action["genres"].value_counts().reset_index()
