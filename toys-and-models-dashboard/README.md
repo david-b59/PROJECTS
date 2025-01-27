@@ -2,7 +2,16 @@
 
 # Description : .
 
-Fonctionnalités clés :
+Une entreprise spécialisée dans la vente de modèles et maquettes vous mandate pour explorer sa base de données existante (employés, produits, commandes, etc.). L'objectif est de créer un tableau de bord actualisable quotidiennement, permettant au directeur de suivre les dernières informations pour une gestion efficace.
+
+Pour les KPI:
+  - Ventes : Le Nombre de produits vendus par catégorie et par mois, avec comparaison et taux de variation par rapport au même mois de l'année précédente.
+  - Finances : Le chiffre d'affaires des commandes des deux derniers mois par pays.
+   -Finances : Les commandes qui n'ont pas encore été payées.
+  - Logistique : Le stock des 5 produits les plus commandés.
+  - Ressources Humaines : Chaque mois, les 2 vendeurs ayant réalisé le plus de chiffres d'affaires
+
+# Fonctionnalités clés :
 
   - Analyse SQL des KPI principaux
 
