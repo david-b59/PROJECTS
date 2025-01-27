@@ -24,24 +24,30 @@ Un cinéma situé dans la Creuse souhaite revitaliser son activité en se digita
   - Construction d’un tableau de bord pour afficher les KPI pertinents.
   - Création d’une présentation synthétique pour expliquer la démarche, les outils utilisés, les difficultés rencontrées, et les pistes d’amélioration.
     
-##Livrables
-Notebook d’analyse et de nettoyage des données
+## Livrables
+1. Notebook d’analyse et de nettoyage des données
 
-Documentation des étapes de préparation et exploration des données avec visualisations.
-Justification des choix et conclusions.
-Dashboard interactif
+  - Documentation des étapes de préparation et exploration des données avec visualisations.
+  - Justification des choix et conclusions.
+    
+2. Dashboard interactif (streamlit)
 
-Présentation des KPI clés tels que :
-Genres dominants.
-Évolution des durées des films.
-Films les mieux notés.
-Notebook sur le système de recommandation
+  - Présentation des KPI clés tels que :
+      - Genres dominants.
+      - Évolution des durées des films.
+      - Films les mieux notés.
+
+3. Notebook sur le système de recommandation
 
 Code source intégralement documenté pour reproduire les recommandations.
-Technologies et Outils
-Exploration et Analyse des données : Python, Pandas, Matplotlib, Seaborn.
-Machine Learning : Scikit-learn.
-Dashboard : Streamlit.
-Base de données : IMDB (fichier CSV).
-Résultats attendus
+
+## Technologies et Outils
+
+  - Exploration et Analyse des données : Python, Pandas, Matplotlib, Seaborn.
+  - Machine Learning : Scikit-learn.
+  - Dashboard : Streamlit.
+  - Base de données : IMDB et TMDB(fichier CSV).
+
+## Résultats attendus
+
 Ce projet vise à fournir une solution personnalisée et adaptée aux attentes locales en intégrant une démarche analytique et technique robuste, et en offrant des outils pratiques pour le cinéma client.
