@@ -374,7 +374,7 @@ elif tabs == 'KPI':
 
     # Téléchargement du CS
     url = "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv"
-    df_français_comedy_action = pd.read_csv(url)
+    df_français_comedy_action = pd.read_csv(url, encoding='utf-8')
 
     # Comptage du nombre de films par genre
     df_count_genres = df_français_comedy_action["genres"].value_counts().reset_index()
