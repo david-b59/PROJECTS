@@ -29,7 +29,7 @@ pyls-spyder==0.4.0
 PyQt5==5.15.10
 PyQtWebEngine==5.15.6
 python-multipart==0.0.17
-pywin32==305.1
+
 setuptools==75.1.0
 shellingham==1.5.4
 starlette==0.41.3
