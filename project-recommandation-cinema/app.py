@@ -27,7 +27,7 @@ with col2:  # Placer l'image dans la colonne centrale
     st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo_projet2.PNG?raw=true", width=200)
 
 # Convertir l'image locale en base64
-image_path = Path("logo arriere plan 3.png")
+image_path = Path("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo arriere plan 3.png?raw=true")
 if image_path.is_file():
     with open(image_path, "rb") as img_file:
         img_base64 = base64.b64encode(img_file.read()).decode()
