@@ -66,7 +66,7 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
             }}
 
             section[data-testid='stSidebar'] > div {{
-                height: 100%;
+                
                 width: 95px;
                 position: relative;
                 z-index: 1;
