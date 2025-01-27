@@ -189,7 +189,7 @@ elif tabs == 'Analyse de marché':
 
         # Section "Analyse démographique"
     st.subheader("Analyse démographique")
-    st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/analyse demographique.png?raw=true", caption="Analyse des données démographiques liées aux films en 2024.", use_column_width=True)
+    st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/analyse demographique.png?raw=true", caption="Analyse des données démographiques liées aux films en 2024.", use_container_width=True)
 
     # Données
     data = {
