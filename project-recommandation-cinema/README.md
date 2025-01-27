@@ -1,4 +1,7 @@
 # Projet : Création d'un Moteur de Recommandation pour un Cinéma Local
+
+# Lien du project fini : https://project-recommandation-cinema.streamlit.app/
+
 ## Contexte
 Un cinéma situé dans la Creuse souhaite revitaliser son activité en se digitalisant. Dans ce cadre, il a sollicité la création d’un moteur de recommandation basé sur une base de données de films (IMDB) pour personnaliser les séances et attirer un public local. Le projet se concentre sur les situations de "cold start", où aucune donnée utilisateur n’est disponible au départ.
 
