@@ -9,6 +9,7 @@ from sklearn.neighbors import NearestNeighbors
 from st_on_hover_tabs import on_hover_tabs
 from pathlib import Path
 import base64
+import requests
 
 
 st.set_page_config(layout="wide")
