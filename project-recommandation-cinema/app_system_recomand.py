@@ -24,82 +24,85 @@ st.markdown("""
 col1, col2, col3 = st.columns([1.5, 1, 1])
 
 with col2:  # Placer l'image dans la colonne centrale
-    st.image("logo projet2.PNG", width=200)
+    st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo_projet2.PNG?raw=true", width=200)
 
 # Convertir l'image locale en base64
-image_path = Path("logo arriere plan 3.png")
-if image_path.is_file():
-    with open(image_path, "rb") as img_file:
-        img_base64 = base64.b64encode(img_file.read()).decode()
+# URL de l'image
+image_url = "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo%20arriere%20plan%203.png?raw=true"
+
+# Récupérer l'image via HTTP
+response = requests.get(image_url)  # Télécharge l'image
+if response.status_code == 200:  # Vérifie que la requête a réussi
+	# Convertir l'image en base64
+	img_base64 = base64.b64encode(response.content).decode()
+	
+	# CSS avec image de fond en base64
+	css = f'''
+	<style>
+	
+	    .stApp {{
+		background-image: url("data:image/png;base64,{img_base64}");
+		background-size: cover;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center;
+		
+	    }}
+	
+	    section[data-testid='stSidebar'] {{
+		background-color: #111;
+		min-width: unset !important;
+		width: unset !important;
+		flex-shrink: unset !important;
+	    }}
+	
+	    button[kind="header"] {{
+		background-color: transparent;
+		color: rgb(180, 167, 141);
+	    }}
+	
+	    @media(hover) {{
+		header[data-testid="stHeader"] {{
+		    display: none;
+		}}
+	
+		section[data-testid='stSidebar'] > div {{
+		    height: 100%;
+		    width: 95px;
+		    position: relative;
+		    z-index: 1;
+		    top: 0;
+		    left: 0;
+		    background-color: #111;
+		    overflow-x: hidden;
+		    transition: 0.5s ease;
+		    padding-top: 60px;
+		    white-space: nowrap;
+		}}
+	
+		section[data-testid='stSidebar'] > div:hover {{
+		    width: 388px;
+		  
+		}}
+	
+		button[kind="header"] {{
+		    display: none;
+		}}
+	    }}
+	
+	    @media(max-width: 272px) {{
+		section[data-testid='stSidebar'] > div {{
+		    width: 15rem;
+		}}
+	
+	    }}
+	
+	    /* Ajouter une image de fond */
+	</style>
+	'''
+	st.markdown(css, unsafe_allow_html=True)
 else:
-    st.error(f"L'image '{image_path.name}' est introuvable dans le dossier : {image_path.parent}")
-
-# CSS avec image de fond en base64
-css = f'''
-<style>
-
-    .stApp {{
-        background-image: url("data:image/png;base64,{img_base64}");
-        background-size: cover;
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-position: center;
-        
-    }}
-
-    section[data-testid='stSidebar'] {{
-        background-color: #111;
-        min-width: unset !important;
-        width: unset !important;
-        flex-shrink: unset !important;
-    }}
-
-    button[kind="header"] {{
-        background-color: transparent;
-        color: rgb(180, 167, 141);
-    }}
-
-    @media(hover) {{
-        header[data-testid="stHeader"] {{
-            display: none;
-        }}
-
-        section[data-testid='stSidebar'] > div {{
-            height: 100%;
-            width: 95px;
-            position: relative;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #111;
-            overflow-x: hidden;
-            transition: 0.5s ease;
-            padding-top: 60px;
-            white-space: nowrap;
-        }}
-
-        section[data-testid='stSidebar'] > div:hover {{
-            width: 388px;
-          
-        }}
-
-        button[kind="header"] {{
-            display: none;
-        }}
-    }}
-
-    @media(max-width: 272px) {{
-        section[data-testid='stSidebar'] > div {{
-            width: 15rem;
-        }}
-
-    }}
-
-    /* Ajouter une image de fond */
-</style>
-'''
-st.markdown(css, unsafe_allow_html=True)
-
+    st.error(f"Erreur lors du chargement de l'image depuis l'URL : {image_url}")
 
 with st.sidebar:
     tabs = on_hover_tabs(tabName=['Présentation', 'Analyse de marché', 'KPI', "Système de recommandation", "Machine Learning","Axes d'amélioration"], 
@@ -166,28 +169,29 @@ if tabs =='Présentation':
     col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
     
     with col1 :	
-        st.image("logo slack.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo slack.PNG?raw=true")
     with col2 :	
-        st.image("logo imdb.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo imdb.PNG?raw=true")
     with col3 :	
-        st.image("logo tmdb.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo tmdb.PNG?raw=true")
     with col4 :	
-        st.image("logo python.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo python.PNG?raw=true")
     with col5 :	
-        st.image("logo pandas.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo pandas.PNG?raw=true")
     with col6 :	
-        st.image("logo vscode.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo vscode.PNG?raw=true")
     with col7 :	
-        st.image("logo scikit-learn.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo scikit-learn.PNG?raw=true")
     with col8 :	
-        st.image("logo streamlit.PNG")
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/logo streamlit.PNG?raw=true")
+
 
 elif tabs == 'Analyse de marché':
     st.title("Analyse de marché du département du Nord")
 
         # Section "Analyse démographique"
     st.subheader("Analyse démographique")
-    st.image("analyse demographique.png", caption="Analyse des données démographiques liées aux films en 2024.", use_column_width=True)
+    st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/analyse demographique.png?raw=true", caption="Analyse des données démographiques liées aux films en 2024.", use_container_width=True)
 
     # Données
     data = {
@@ -369,10 +373,21 @@ elif tabs == 'KPI':
     col1, col2, col3 = st.columns([1.5, 1, 1])
 
     with col2:  # Placer l'image dans la colonne centrale
-        st.image("kpi.png", width=400)
+        st.image("https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/kpi.png?raw=true", width=400)
 
-    # Téléchargement du CSV
-    df_français_comedy_action = pd.read_csv("df_français_comedy_action03.csv")
+    url = "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv"
+
+    # Télécharger le fichier CSV avec requests
+    response = requests.get(url)
+
+    # Vérifier si la réponse est correcte (status_code 200)
+    if response.status_code == 200:
+    	# Lire le contenu en utilisant l'encodage approprié
+    	df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+    	
+    else:
+    	st.error("Le fichier CSV n'a pas pu être téléchargé.")
+    
 
     # Comptage du nombre de films par genre
     df_count_genres = df_français_comedy_action["genres"].value_counts().reset_index()
@@ -427,15 +442,31 @@ elif tabs == 'KPI':
     st.subheader("Répartition des films par année")
     st.plotly_chart(fig)
 
+
 elif tabs == 'Système de recommandation':
     st.title("Système de recommandation")
 
     st.cache_resource.clear()
     st.cache_data.clear()
 
-    def syst_recomand_film(csv_df, csv_X):
+    def syst_recomand_film(url_csv_df, url_csv_X):
             # Téléchargement du CSV
             df_français_comedy_action = pd.read_csv(csv_df)
+
+
+	    url = url
+
+	    # Télécharger le fichier CSV avec requests
+	    response = requests.get(url_csv_df)
+	
+	    # Vérifier si la réponse est correcte (status_code 200)
+	    if response.status_code == 200:
+	    	# Lire le contenu en utilisant l'encodage approprié
+	    	df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+	    	
+	    else:
+	    	st.error("Le fichier CSV n'a pas pu être téléchargé.")
+	    
             liste_films = df_français_comedy_action['titre_original'].tolist()
 
 
@@ -459,7 +490,7 @@ elif tabs == 'Système de recommandation':
 
             if nombre_voisin :
                 # Chargement des données pour l'entraînement
-                X = pd.read_csv(csv_X)
+                X = pd.read_csv(url_csv_X)
 
                 # Séparation des données
                 df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
@@ -565,13 +596,13 @@ elif tabs == 'Système de recommandation':
 
     # Vérification du projet sélectionné
     if st.session_state["selected_project"] == "francais":
-        syst_recomand_film("df_français_comedy_action03.csv", "df_X.csv")
+        syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
     elif st.session_state["selected_project"] == "halloween":
-        syst_recomand_film("halloween_movies02.csv", "df_X_halloween.csv")
+        syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/halloween_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_halloween.csv?raw=true")
     elif st.session_state["selected_project"] == "animation":
-        syst_recomand_film("animation_movies02.csv", "df_X_animation.csv")
+        syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/animation_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_animation.csv?raw=true")
     elif st.session_state["selected_project"] == "noel":
-        syst_recomand_film("familial_christmas_movies02.csv", "df_X_noel.csv")
+        syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/familial_christmas_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true")
                        
 elif tabs == 'Machine Learning':
     st.title("Machine Learning")
