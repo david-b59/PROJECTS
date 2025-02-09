@@ -448,7 +448,7 @@ elif tabs == 'KPI':
 elif tabs == 'Système de recommandation':
     st.title("Système de recommandation")
 
-    # Effacer les caches si besoin
+    # Effacer les caches
     st.cache_resource.clear()
     st.cache_data.clear()
 
@@ -457,11 +457,8 @@ elif tabs == 'Système de recommandation':
         try:
             # Chargement des données du dataset de films
             response = requests.get(url_csv_df)
-            if response.status_code == 200:
-                df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
-            else:
-                st.error("Erreur lors du téléchargement des données.")
-                return
+            response.raise_for_status()  # Vérifie si la requête est réussie
+            df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
 
             liste_films = df_français_comedy_action['titre_original'].tolist()
 
@@ -529,6 +526,11 @@ elif tabs == 'Système de recommandation':
                             </iframe>
                         </div>
                         """, unsafe_allow_html=True)
+        
+        except requests.exceptions.RequestException as e:
+            st.error(f"Erreur de téléchargement des fichiers : {e}")
+        except Exception as e:
+            st.error(f"Une erreur est survenue : {e}")
 
     # Interface utilisateur : boutons et sélection des catégories
     col1, col2, col3, col4 = st.columns(4)
