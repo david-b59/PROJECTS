@@ -446,121 +446,121 @@ elif tabs == 'KPI':
 
 
 elif tabs == 'Système de recommandation':
-    st.title("Système de recommandation")
-
-    st.cache_resource.clear()
-    st.cache_data.clear()
-
-    def syst_recomand_film(url_csv_df, url_csv_X):
-        url = url_csv_df
-
-        # Télécharger le fichier CSV avec requests
-        response = requests.get(url)
-
-        # Vérifier si la réponse est correcte (status_code 200)
-        if response.status_code == 200:
-            # Lire le contenu en utilisant l'encodage approprié
-            df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
-        else:
-            st.error("Le fichier CSV n'a pas pu être téléchargé.")
-            return
-
-        liste_films = df_français_comedy_action['titre_original'].tolist()
-
-        # Sélection du film
-        film_rechercher = st.selectbox(
-            "Sélectionnez un film pour découvrir des recommandations similaires :",
-            options=liste_films,
-            placeholder="Sélectionne ici..."
-        )
-
-        # Utilisation de st.slider
-        nombre_voisin = st.slider(
-            "Entrez un nombre de recommandations :",
-            min_value=1,  # Nombre minimal
-            max_value=20,  # Nombre maximal
-            value=5  # Valeur par défaut
-        )
-
-        st.write(f"Nombre sélectionné : {nombre_voisin}")
-
-        if nombre_voisin:
-            # Chargement des données pour l'entraînement
-            X = pd.read_csv(url_csv_X)
-
-            # Séparation des données
-            df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
-            df_reste_films = X.loc[X['titre_original'] != film_rechercher]
-
-            # Vérification que le film recherché existe
-            if df_film_recherché.empty:
-                st.error("Film non trouvé dans la base de données.")
-            else:
-                # Modèle NN
-                modelnn = NearestNeighbors(n_neighbors=nombre_voisin, metric='cosine')
-                modelnn.fit(df_reste_films.drop(["titre_original", "index_original"], axis=1))
-
-                # Trouver les voisins
-                distances, indices = modelnn.kneighbors(
-                    df_film_recherché.drop(["titre_original", "index_original"], axis=1).values
-                )
-
-                # Récupérer les voisins
-                voisins = [
-                    df_reste_films.iloc[index]['titre_original'] for index in indices[0]
-                ]
-
-                # Recommandations
-                df_films_recommande = df_français_comedy_action.loc[
-                    df_français_comedy_action['titre_original'].isin(voisins)
-                ]
-
-                # Stocker chemin affiche, titre et description
-                chemin_daffiche_list = df_films_recommande['chemin_affiche'].values.tolist()
-                titre_list = df_films_recommande['titre_original'].values.tolist()
-                description_list = df_films_recommande['description_fr'].values.tolist()
-                genre_list = df_films_recommande['genres'].values.tolist()
-                annee_list = df_films_recommande['annee_sortie'].values.tolist()
-                note_list = df_films_recommande['moyenne_notes'].values.tolist()
-                video_list = df_films_recommande['video_id'].values.tolist()
-
-                # Base URL pour les affiches (TMDB dans cet exemple)
-                base_url = "https://image.tmdb.org/t/p/w500"
-
-                # Parcourir chaque ligne du dataframe pour afficher les films
-                for affiche, titre, description, genre, annee, note, video in zip(
-                    chemin_daffiche_list, titre_list, description_list,
-                    genre_list, annee_list, note_list, video_list
-                ):
-                    col1, col2 = st.columns([1, 2])
-
-                    # Colonne gauche : Affiche
-                    with col1:
-                        st.image(f"{base_url}{affiche}", use_column_width=True)
-
-                    # Colonne droite : Titre, description et détails
-                    with col2:
-                        st.markdown(
-                            f"""
-                            <div style="text-align: left; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-                                <h1 style='margin-top: 0px; color: #333; font-size: 22px;'>{titre}</h1>
-                                <p style='font-size: 16px; color: #555; margin-top: 5px;'><strong>Genre :</strong> {genre}</p>
-                                <p style='font-size: 16px; color: #555;'><strong>Année de sortie :</strong> {annee}</p>
-                                <p style='font-size: 16px; color: #555;'><strong>Note moyenne :</strong> ⭐ {note}/10</p>
-                                <p style='font-size: 14px; color: #777; margin-top: 15px; text-align: justify;'>{description}</p>
-                                <div style="margin-top: 20px; text-align: center;">
-                                    <iframe width="100%" height="315" 
-                                        src="https://www.youtube.com/embed/{video}" 
-                                        title="YouTube video player" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
-                                </div>
-                            </div>
-                            """,
-                            unsafe_allow_html=True,
-                        )
+	st.title("Système de recommandation")
+	
+	st.cache_resource.clear()
+	st.cache_data.clear()
+	
+	def syst_recomand_film(url_csv_df, url_csv_X):
+		url = url_csv_df
+		
+		# Télécharger le fichier CSV avec requests
+		response = requests.get(url)
+		
+		# Vérifier si la réponse est correcte (status_code 200)
+		if response.status_code == 200:
+		    # Lire le contenu en utilisant l'encodage approprié
+		    df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+		else:
+		    st.error("Le fichier CSV n'a pas pu être téléchargé.")
+		    return
+		
+		liste_films = df_français_comedy_action['titre_original'].tolist()
+		
+		# Sélection du film
+		film_rechercher = st.selectbox(
+		    "Sélectionnez un film pour découvrir des recommandations similaires :",
+		    options=liste_films,
+		    placeholder="Sélectionne ici..."
+		)
+		
+		# Utilisation de st.slider
+		nombre_voisin = st.slider(
+		    "Entrez un nombre de recommandations :",
+		    min_value=1,  # Nombre minimal
+		    max_value=20,  # Nombre maximal
+		    value=5  # Valeur par défaut
+		)
+		
+		st.write(f"Nombre sélectionné : {nombre_voisin}")
+		
+		if nombre_voisin:
+		    # Chargement des données pour l'entraînement
+		    X = pd.read_csv(url_csv_X)
+		
+		    # Séparation des données
+		    df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
+		    df_reste_films = X.loc[X['titre_original'] != film_rechercher]
+		
+		    # Vérification que le film recherché existe
+		    if df_film_recherché.empty:
+			st.error("Film non trouvé dans la base de données.")
+		    else:
+			# Modèle NN
+			modelnn = NearestNeighbors(n_neighbors=nombre_voisin, metric='cosine')
+			modelnn.fit(df_reste_films.drop(["titre_original", "index_original"], axis=1))
+		
+			# Trouver les voisins
+			distances, indices = modelnn.kneighbors(
+			    df_film_recherché.drop(["titre_original", "index_original"], axis=1).values
+			)
+		
+			# Récupérer les voisins
+			voisins = [
+			    df_reste_films.iloc[index]['titre_original'] for index in indices[0]
+			]
+		
+			# Recommandations
+			df_films_recommande = df_français_comedy_action.loc[
+			    df_français_comedy_action['titre_original'].isin(voisins)
+			]
+		
+			# Stocker chemin affiche, titre et description
+			chemin_daffiche_list = df_films_recommande['chemin_affiche'].values.tolist()
+			titre_list = df_films_recommande['titre_original'].values.tolist()
+			description_list = df_films_recommande['description_fr'].values.tolist()
+			genre_list = df_films_recommande['genres'].values.tolist()
+			annee_list = df_films_recommande['annee_sortie'].values.tolist()
+			note_list = df_films_recommande['moyenne_notes'].values.tolist()
+			video_list = df_films_recommande['video_id'].values.tolist()
+		
+			# Base URL pour les affiches (TMDB dans cet exemple)
+			base_url = "https://image.tmdb.org/t/p/w500"
+		
+			# Parcourir chaque ligne du dataframe pour afficher les films
+			for affiche, titre, description, genre, annee, note, video in zip(
+			    chemin_daffiche_list, titre_list, description_list,
+			    genre_list, annee_list, note_list, video_list
+			):
+			    col1, col2 = st.columns([1, 2])
+		
+			    # Colonne gauche : Affiche
+			    with col1:
+				st.image(f"{base_url}{affiche}", use_column_width=True)
+		
+			    # Colonne droite : Titre, description et détails
+			    with col2:
+				st.markdown(
+				    f"""
+				    <div style="text-align: left; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+					<h1 style='margin-top: 0px; color: #333; font-size: 22px;'>{titre}</h1>
+					<p style='font-size: 16px; color: #555; margin-top: 5px;'><strong>Genre :</strong> {genre}</p>
+					<p style='font-size: 16px; color: #555;'><strong>Année de sortie :</strong> {annee}</p>
+					<p style='font-size: 16px; color: #555;'><strong>Note moyenne :</strong> ⭐ {note}/10</p>
+					<p style='font-size: 14px; color: #777; margin-top: 15px; text-align: justify;'>{description}</p>
+					<div style="margin-top: 20px; text-align: center;">
+					    <iframe width="100%" height="315" 
+						src="https://www.youtube.com/embed/{video}" 
+						title="YouTube video player" 
+						frameborder="0" 
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+						allowfullscreen>
+					    </iframe>
+					</div>
+				    </div>
+				    """,
+				    unsafe_allow_html=True,
+				)
 
 	
 	# Séparateur entre les films
