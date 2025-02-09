@@ -563,45 +563,45 @@ elif tabs == 'Système de recommandation':
                         )
 
 	
-# Séparateur entre les films
-st.markdown("<hr style='border: 1px solid #ccc;'>", unsafe_allow_html=True)
-
-# Créer des colonnes pour les boutons
-col1, col2 , col3, col4= st.columns(4)
-
-# Ajouter des boutons dans chaque colonne
-with col1:
-	button_theme_princip = st.button("français - Comdie/ACtion", key="francais_button")
-with col2:
-	button_theme_halloween = st.button("halloween", key="halloween_button")
-with col3:
-	button_theme_animation = st.button("animation - familial", key="animation_button")
-with col4:
-	button_theme_noel = st.button("noel _ familial", key="noel_button")
-
-# Initialisation de l'état du projet sélectionné dans st.session_state
-if "selected_project" not in st.session_state:
-	st.session_state["selected_project"] = None
-
-# Vérifier lequel des boutons a été cliqué et mettre à jour l'état
-if button_theme_princip:
-	st.session_state["selected_project"] = "francais"
-elif button_theme_halloween:
-	st.session_state["selected_project"] = "halloween"
-elif button_theme_animation:
-	st.session_state["selected_project"] = "animation"
-elif button_theme_noel:
-	st.session_state["selected_project"] = "noel"
-
-# Vérification du projet sélectionné
-if st.session_state["selected_project"] == "francais":
-	syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
-elif st.session_state["selected_project"] == "halloween":
-	syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/halloween_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_halloween.csv?raw=true")
-elif st.session_state["selected_project"] == "animation":
-	syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/animation_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_animation.csv?raw=true")
-elif st.session_state["selected_project"] == "noel":
-	syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/familial_christmas_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true")
+	# Séparateur entre les films
+	st.markdown("<hr style='border: 1px solid #ccc;'>", unsafe_allow_html=True)
+	
+	# Créer des colonnes pour les boutons
+	col1, col2 , col3, col4= st.columns(4)
+	
+	# Ajouter des boutons dans chaque colonne
+	with col1:
+		button_theme_princip = st.button("français - Comdie/ACtion", key="francais_button")
+	with col2:
+		button_theme_halloween = st.button("halloween", key="halloween_button")
+	with col3:
+		button_theme_animation = st.button("animation - familial", key="animation_button")
+	with col4:
+		button_theme_noel = st.button("noel _ familial", key="noel_button")
+	
+	# Initialisation de l'état du projet sélectionné dans st.session_state
+	if "selected_project" not in st.session_state:
+		st.session_state["selected_project"] = None
+	
+	# Vérifier lequel des boutons a été cliqué et mettre à jour l'état
+	if button_theme_princip:
+		st.session_state["selected_project"] = "francais"
+	elif button_theme_halloween:
+		st.session_state["selected_project"] = "halloween"
+	elif button_theme_animation:
+		st.session_state["selected_project"] = "animation"
+	elif button_theme_noel:
+		st.session_state["selected_project"] = "noel"
+	
+	# Vérification du projet sélectionné
+	if st.session_state["selected_project"] == "francais":
+		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
+	elif st.session_state["selected_project"] == "halloween":
+		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/halloween_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_halloween.csv?raw=true")
+	elif st.session_state["selected_project"] == "animation":
+		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/animation_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_animation.csv?raw=true")
+	elif st.session_state["selected_project"] == "noel":
+		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/familial_christmas_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true")
                        
 elif tabs == 'Machine Learning':
     st.title("Machine Learning")
