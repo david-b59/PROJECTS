@@ -454,10 +454,10 @@ elif tabs == 'Système de recommandation':
             df_français_comedy_action = pd.read_csv(csv_df)
 
 
-	    url = url
+	    url = url_csv_df
 
 	    # Télécharger le fichier CSV avec requests
-	    response = requests.get(url_csv_df)
+	    response = requests.get(url)
 	
 	    # Vérifier si la réponse est correcte (status_code 200)
 	    if response.status_code == 200:
