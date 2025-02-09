@@ -576,7 +576,7 @@ elif tabs == 'Système de recommandation':
         )
     elif st.session_state["selected_project"] == "noel":
         syst_recomand_film(
-            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/noel_movies02.csv",
+            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/familial_christmas_movies02.csv",
             "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true"
         )
                        
