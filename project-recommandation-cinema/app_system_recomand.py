@@ -446,162 +446,137 @@ elif tabs == 'KPI':
 
 
 elif tabs == 'Système de recommandation':
-	st.title("Système de recommandation")
-	
-	st.cache_resource.clear()
-	st.cache_data.clear()
-	
-	def syst_recomand_film(url_csv_df, url_csv_X):
-		url = url_csv_df
-		
-		# Télécharger le fichier CSV avec requests
-		response = requests.get(url)
-		
-		# Vérifier si la réponse est correcte (status_code 200)
-		if response.status_code == 200:
-		    # Lire le contenu en utilisant l'encodage approprié
-		    df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
-		else:
-		    st.error("Le fichier CSV n'a pas pu être téléchargé.")
-		    return
-		
-		liste_films = df_français_comedy_action['titre_original'].tolist()
-		
-		# Sélection du film
-		film_rechercher = st.selectbox(
-		    "Sélectionnez un film pour découvrir des recommandations similaires :",
-		    options=liste_films,
-		    placeholder="Sélectionne ici..."
-		)
-		
-		# Utilisation de st.slider
-		nombre_voisin = st.slider(
-		    "Entrez un nombre de recommandations :",
-		    min_value=1,  # Nombre minimal
-		    max_value=20,  # Nombre maximal
-		    value=5  # Valeur par défaut
-		)
-		
-		st.write(f"Nombre sélectionné : {nombre_voisin}")
-		
-		if nombre_voisin:
-		    # Chargement des données pour l'entraînement
-		    X = pd.read_csv(url_csv_X)
-		
-		    # Séparation des données
-		    df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
-		    df_reste_films = X.loc[X['titre_original'] != film_rechercher]
-		
-		    # Vérification que le film recherché existe
-		    if df_film_recherché.empty:
-			st.error("Film non trouvé dans la base de données.")
-		    else:
-			# Modèle NN
-			modelnn = NearestNeighbors(n_neighbors=nombre_voisin, metric='cosine')
-			modelnn.fit(df_reste_films.drop(["titre_original", "index_original"], axis=1))
-		
-			# Trouver les voisins
-			distances, indices = modelnn.kneighbors(
-			    df_film_recherché.drop(["titre_original", "index_original"], axis=1).values
-			)
-		
-			# Récupérer les voisins
-			voisins = [
-			    df_reste_films.iloc[index]['titre_original'] for index in indices[0]
-			]
-		
-			# Recommandations
-			df_films_recommande = df_français_comedy_action.loc[
-			    df_français_comedy_action['titre_original'].isin(voisins)
-			]
-		
-			# Stocker chemin affiche, titre et description
-			chemin_daffiche_list = df_films_recommande['chemin_affiche'].values.tolist()
-			titre_list = df_films_recommande['titre_original'].values.tolist()
-			description_list = df_films_recommande['description_fr'].values.tolist()
-			genre_list = df_films_recommande['genres'].values.tolist()
-			annee_list = df_films_recommande['annee_sortie'].values.tolist()
-			note_list = df_films_recommande['moyenne_notes'].values.tolist()
-			video_list = df_films_recommande['video_id'].values.tolist()
-		
-			# Base URL pour les affiches (TMDB dans cet exemple)
-			base_url = "https://image.tmdb.org/t/p/w500"
-		
-			# Parcourir chaque ligne du dataframe pour afficher les films
-			for affiche, titre, description, genre, annee, note, video in zip(
-			    chemin_daffiche_list, titre_list, description_list,
-			    genre_list, annee_list, note_list, video_list
-			):
-			    col1, col2 = st.columns([1, 2])
-		
-			    # Colonne gauche : Affiche
-			    with col1:
-				st.image(f"{base_url}{affiche}", use_column_width=True)
-		
-			    # Colonne droite : Titre, description et détails
-			    with col2:
-				st.markdown(
-				    f"""
-				    <div style="text-align: left; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
-					<h1 style='margin-top: 0px; color: #333; font-size: 22px;'>{titre}</h1>
-					<p style='font-size: 16px; color: #555; margin-top: 5px;'><strong>Genre :</strong> {genre}</p>
-					<p style='font-size: 16px; color: #555;'><strong>Année de sortie :</strong> {annee}</p>
-					<p style='font-size: 16px; color: #555;'><strong>Note moyenne :</strong> ⭐ {note}/10</p>
-					<p style='font-size: 14px; color: #777; margin-top: 15px; text-align: justify;'>{description}</p>
-					<div style="margin-top: 20px; text-align: center;">
-					    <iframe width="100%" height="315" 
-						src="https://www.youtube.com/embed/{video}" 
-						title="YouTube video player" 
-						frameborder="0" 
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-						allowfullscreen>
-					    </iframe>
-					</div>
-				    </div>
-				    """,
-				    unsafe_allow_html=True,
-				)
+    st.title("Système de recommandation")
 
-	
-	# Séparateur entre les films
-	st.markdown("<hr style='border: 1px solid #ccc;'>", unsafe_allow_html=True)
-	
-	# Créer des colonnes pour les boutons
-	col1, col2 , col3, col4= st.columns(4)
-	
-	# Ajouter des boutons dans chaque colonne
-	with col1:
-		button_theme_princip = st.button("français - Comdie/ACtion", key="francais_button")
-	with col2:
-		button_theme_halloween = st.button("halloween", key="halloween_button")
-	with col3:
-		button_theme_animation = st.button("animation - familial", key="animation_button")
-	with col4:
-		button_theme_noel = st.button("noel _ familial", key="noel_button")
-	
-	# Initialisation de l'état du projet sélectionné dans st.session_state
-	if "selected_project" not in st.session_state:
-		st.session_state["selected_project"] = None
-	
-	# Vérifier lequel des boutons a été cliqué et mettre à jour l'état
-	if button_theme_princip:
-		st.session_state["selected_project"] = "francais"
-	elif button_theme_halloween:
-		st.session_state["selected_project"] = "halloween"
-	elif button_theme_animation:
-		st.session_state["selected_project"] = "animation"
-	elif button_theme_noel:
-		st.session_state["selected_project"] = "noel"
-	
-	# Vérification du projet sélectionné
-	if st.session_state["selected_project"] == "francais":
-		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true")
-	elif st.session_state["selected_project"] == "halloween":
-		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/halloween_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_halloween.csv?raw=true")
-	elif st.session_state["selected_project"] == "animation":
-		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/animation_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_animation.csv?raw=true")
-	elif st.session_state["selected_project"] == "noel":
-		syst_recomand_film("https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/familial_christmas_movies02.csv", "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true")
+    # Effacer les caches si besoin
+    st.cache_resource.clear()
+    st.cache_data.clear()
+
+    # Définition de la fonction principale du système de recommandation
+    def syst_recomand_film(url_csv_df, url_csv_X):
+        try:
+            # Chargement des données du dataset de films
+            response = requests.get(url_csv_df)
+            if response.status_code == 200:
+                df_français_comedy_action = pd.read_csv(io.StringIO(response.text), encoding='utf-8')
+            else:
+                st.error("Erreur lors du téléchargement des données.")
+                return
+
+            liste_films = df_français_comedy_action['titre_original'].tolist()
+
+            # Sélection du film
+            film_rechercher = st.selectbox(
+                "Sélectionnez un film pour découvrir des recommandations similaires :",
+                options=liste_films,
+                placeholder="Sélectionne ici..."
+            )
+
+            # Nombre de recommandations
+            nombre_voisin = st.slider(
+                "Nombre de recommandations :",
+                min_value=1, max_value=20, value=5
+            )
+
+            if film_rechercher and nombre_voisin:
+                # Chargement des features pour le modèle
+                X = pd.read_csv(url_csv_X)
+
+                # Vérification de l'existence du film dans les features
+                df_film_recherché = X.loc[X['titre_original'] == film_rechercher]
+                df_reste_films = X.loc[X['titre_original'] != film_rechercher]
+
+                if df_film_recherché.empty:
+                    st.error("Film non trouvé dans la base de données.")
+                    return
+
+                # Création du modèle
+                modelnn = NearestNeighbors(n_neighbors=nombre_voisin, metric='cosine')
+                modelnn.fit(df_reste_films.drop(["titre_original", "index_original"], axis=1))
+
+                # Recherche des films les plus proches
+                distances, indices = modelnn.kneighbors(
+                    df_film_recherché.drop(["titre_original", "index_original"], axis=1).values
+                )
+
+                # Extraction des voisins
+                voisins = df_reste_films.iloc[indices[0]]['titre_original'].tolist()
+
+                # Récupération des informations des films recommandés
+                df_films_recommande = df_français_comedy_action[
+                    df_français_comedy_action['titre_original'].isin(voisins)
+                ]
+
+                # Affichage des recommandations
+                base_url = "https://image.tmdb.org/t/p/w500"
+                for _, row in df_films_recommande.iterrows():
+                    col1, col2 = st.columns([1, 2])
+
+                    with col1:
+                        st.image(f"{base_url}{row['chemin_affiche']}", use_column_width=True)
+
+                    with col2:
+                        st.markdown(f"""
+                        <div style="text-align: left; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+                            <h1 style='color: #333; font-size: 22px;'>{row['titre_original']}</h1>
+                            <p><strong>Genre :</strong> {row['genres']}</p>
+                            <p><strong>Année :</strong> {row['annee_sortie']}</p>
+                            <p><strong>Note moyenne :</strong> ⭐ {row['moyenne_notes']}/10</p>
+                            <p>{row['description_fr']}</p>
+                            <iframe width="100%" height="315" 
+                                src="https://www.youtube.com/embed/{row['video_id']}" 
+                                frameborder="0" allowfullscreen>
+                            </iframe>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+    # Interface utilisateur : boutons et sélection des catégories
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        button_theme_princip = st.button("Français - Comédie/Action")
+    with col2:
+        button_theme_halloween = st.button("Halloween")
+    with col3:
+        button_theme_animation = st.button("Animation - Familial")
+    with col4:
+        button_theme_noel = st.button("Noël - Familial")
+
+    # Utilisation de session_state pour stocker la sélection
+    if "selected_project" not in st.session_state:
+        st.session_state["selected_project"] = None
+
+    # Détecter quel bouton a été cliqué
+    if button_theme_princip:
+        st.session_state["selected_project"] = "francais"
+    elif button_theme_halloween:
+        st.session_state["selected_project"] = "halloween"
+    elif button_theme_animation:
+        st.session_state["selected_project"] = "animation"
+    elif button_theme_noel:
+        st.session_state["selected_project"] = "noel"
+
+    # Vérification et exécution de la bonne catégorie
+    if st.session_state["selected_project"] == "francais":
+        syst_recomand_film(
+            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/df_français_comedy_action03.csv",
+            "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X.csv?raw=true"
+        )
+    elif st.session_state["selected_project"] == "halloween":
+        syst_recomand_film(
+            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/halloween_movies02.csv",
+            "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_halloween.csv?raw=true"
+        )
+    elif st.session_state["selected_project"] == "animation":
+        syst_recomand_film(
+            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/animation_movies02.csv",
+            "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_animation.csv?raw=true"
+        )
+    elif st.session_state["selected_project"] == "noel":
+        syst_recomand_film(
+            "https://raw.githubusercontent.com/david-b59/PROJECTS/main/project-recommandation-cinema/noel_movies02.csv",
+            "https://github.com/david-b59/PROJECTS/blob/main/project-recommandation-cinema/df_X_noel.csv?raw=true"
+        )
                        
 elif tabs == 'Machine Learning':
     st.title("Machine Learning")
