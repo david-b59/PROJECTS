@@ -561,8 +561,8 @@ elif tabs == 'Système de recommandation':
                         )
 
 	
-		# Séparateur entre les films
-		st.markdown("<hr style='border: 1px solid #ccc;'>", unsafe_allow_html=True)
+# Séparateur entre les films
+st.markdown("<hr style='border: 1px solid #ccc;'>", unsafe_allow_html=True)
 
     # Créer des colonnes pour les boutons
     col1, col2 , col3, col4= st.columns(4)
