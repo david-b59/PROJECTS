@@ -510,7 +510,7 @@ elif tabs == 'Système de recommandation':
                     col1, col2 = st.columns([1, 2])
 
                     with col1:
-                        st.image(f"{base_url}{row['chemin_affiche']}", use_column_width=True)
+                        st.image(f"{base_url}{row['chemin_affiche']}", use_container_width=True)
 
                     with col2:
                         st.markdown(f"""
