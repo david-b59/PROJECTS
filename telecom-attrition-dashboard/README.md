@@ -38,7 +38,7 @@ Chaque mois, certains clients résilient leur abonnement. Or, il s’est avéré
 
 1. **Cloner le dépôt**
    ```bash
-   git clone https://github.com/votre-utilisateur/dashboard-churn-telecom.git
+   git clone https://github.com/david-b59/PROJECTS/tree/main/telecom-attrition-dashboard
    cd dashboard-churn-telecom
 
 ## Conclusion
