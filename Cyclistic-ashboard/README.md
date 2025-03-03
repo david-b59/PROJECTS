@@ -21,7 +21,7 @@ Les questions clés auxquelles cette analyse cherche à répondre sont :
 ## Data & Méthodologie
 
 ### Collecte des Données
-- **Source des données :** Les données sont publiques et disponibles sur le serveur AWS de Divvy Tripdata ([lien](https://divvy-tripdata.s3.amazonaws.com/index.html)).
+- **Source des données :** Les données de base proviennent de fichiers CSV publics disponibles sur le serveur AWS de Divvy Tripdata ([lien](https://divvy-tripdata.s3.amazonaws.com/index.html)).
 - **Période :** Année 2021 (fichiers CSV de Janvier à Décembre).
 
 ### Pré-traitement et Traitement des Données
@@ -48,8 +48,16 @@ Les questions clés auxquelles cette analyse cherche à répondre sont :
    - Visualisations interactives dans Power BI.
    - Carte géographique des stations.
    - Tableaux croisés dynamiques pour explorer les données.
+   - **Screenshots du dashboard Power BI :** Ces captures d'écran se trouvent dans le dossier `powerbi/screenshots`.
 
-3. **Code & Analyse Exploratoire**
+3. **Fichiers Power BI**
+   - Un fichier Power BI complet est disponible en format `.pbit` (template).  
+   - **Instructions pour générer le fichier `.pbix` complet :**
+     1. Clonez le dépôt et ouvrez le fichier `.pbit` dans Power BI Desktop.
+     2. Lors de l'ouverture, Power BI vous demandera de spécifier les sources de données. Sélectionnez le fichier CSV nettoyé (situé dans le dossier `notebook`).
+     3. Une fois la source définie, le fichier sera converti en un fichier `.pbix` opérationnel.
+     
+4. **Code & Analyse Exploratoire**
    - Code de prétraitement et d’analyse contenu dans un Google Colab (accessible dans le dépôt).
 
 ## Technologies et Outils
@@ -63,19 +71,23 @@ Les questions clés auxquelles cette analyse cherche à répondre sont :
   - Git et GitHub pour le suivi des versions et la collaboration.
 
 
-
 ## Instructions d'Utilisation
 
 1. **Cloner le dépôt :**
    ```bash
-   git clone https://github.com/votre-utilisateur/Cyclistic-Dashboard.git
+   git clone https://github.com/david-b59/PROJECTS/tree/main/Cyclistic-ashboard
 
 2. **Explorer le code :**
 * Ouvrez le notebook data_exploration.ipynb dans Google Colab ou Jupyter Notebook pour examiner le processus de nettoyage et de traitement des données.
 
-4. **Visualiser le Dashboard :**
-* Ouvrez le fichier Cyclistic_Dashboard.pbix dans Power BI pour interagir avec les visualisations et explorer les données.
+3. **Préparer le Dashboard Power BI :**
+* Ouvrez le fichier Cyclistic_Dashboard.pbit dans Power BI Desktop.
+* Lorsque vous y êtes invité, définissez la source de données en sélectionnant le fichier CSV nettoyé situé dans le dossier notebook.
+* Cela convertira le fichier en un fichier Power BI opérationnel au format .pbix.
+
+4. Visualiser le Dashboard :
+* Une fois le fichier .pbix généré, vous pouvez interagir avec les visualisations dans Power BI Desktop.
+* Consultez également les captures d'écran dans le dossier powerbi/screenshots pour un aperçu rapide du dashboard.
 
 ## Conclusion
 Ce projet a permis de dégager des insights clés sur l'utilisation des vélos par les cyclistes occasionnels et les membres annuels, offrant ainsi une base solide pour formuler des recommandations stratégiques destinées à convertir davantage d'utilisateurs occasionnels en abonnés annuels. L'intégration de visualisations interactives et accessibles garantit que les investisseurs, même sans expertise technique, peuvent comprendre et apprécier la valeur ajoutée de cette analyse.
-
