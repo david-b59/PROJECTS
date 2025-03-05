@@ -122,6 +122,12 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
 	        h1, h2, h3, h4, h5, h6, div, p, span {{
 	            /* color: black !important; */
 	        }}
+
+  		/* modification input pout choix du film à recommander */
+		div.st-bl {{
+			background-color: rgb(240, 242, 246);
+  		}}
+    
 	        /* Rétablir la couleur d'origine pour les boutons */
 		    button, 
 		    .stButton button, 
