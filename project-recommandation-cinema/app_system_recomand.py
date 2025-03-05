@@ -159,9 +159,9 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
 	        color: #00ff00 !important;  /* Texte vert clair */
 	        background-color: #2a2a2a !important; /* Fond gris foncé */
 	        font-family: 'Courier New', Courier, monospace !important;
-	        padding: 12px !important;
+	        /* padding: 12px !important; */
 	        border-radius: 6px !important;
-	        display: block !important;
+	        /* display: block !important; */
 	        overflow-x: auto !important;  /* Permettre le scroll horizontal */
 	        white-space: pre-wrap !important;  /* Empêcher le débordement */
 	        word-wrap: break-word !important;  /* Permettre la coupure des mots */
