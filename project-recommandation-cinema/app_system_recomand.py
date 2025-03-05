@@ -536,11 +536,11 @@ elif tabs == 'Système de recommandation':
 	    <style>
             /* Sélectionbox - Appliquer le style à TOUS les appareils */
 	    div[data-baseweb="select"], div[data-baseweb="select"] * {
-	        background-color: #2C3E50 !important; /* Fond bleu-gris foncé */
-	        border: 2px solid #1B2A41 !important; /* Bordure gris foncé */
+	        /* background-color: #2C3E50 !important; */ /* Fond bleu-gris foncé */
+	        /* border: 2px solid #1B2A41 !important; */ /* Bordure gris foncé */
 	        border-radius: 8px !important; /* Coins arrondis */
-	        padding: 8px !important; /* Espacement interne */
-	        color: white !important; /* Texte blanc */
+	        /* padding: 8px !important; */ /* Espacement interne */
+	        /* color: white !important; */ /* Texte blanc */
 	        font-family: 'Arial', sans-serif !important; /* Police moderne */
 	        font-size: 16px !important; /* Texte plus grand */
 	    }
