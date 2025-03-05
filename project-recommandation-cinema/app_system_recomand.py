@@ -120,52 +120,52 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
      	    /* S'assurer que la lisibilité est bonne sur mobile */
 	    @media (max-width: 768px) {{
 	        h1, h2, h3, h4, h5, h6, div, p, span {{
-	            color: black !important;
+	            /* color: black !important; */
 	        }}
 	        /* Rétablir la couleur d'origine pour les boutons */
-	    button, 
-	    .stButton button, 
-	    .stDownloadButton button, 
-	    .st-emotion-cache button {{  
-	        color: white !important;  /* Texte blanc pour contraste */
-	        background: linear-gradient(135deg, #2C3E50, #4CA1AF) !important; /* Dégradé bleu-gris pro */
-	        border: 2px solid #1B2A41 !important; /* Bordure gris foncé */
-	        padding: 12px 18px !important; /* Agrandir les boutons */
-	        border-radius: 8px !important; /* Coins arrondis */
-	        font-size: 16px !important; /* Texte lisible */
-	        font-weight: bold !important; /* Texte en gras */
-	        cursor: pointer !important; /* Curseur interactif */
-	        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !important; /* Ombre pour effet 3D */
-	        transition: all 0.3s ease-in-out !important; /* Animation fluide */
-	    }}
-	    /* Ajuster les boutons au survol */
-	    button:hover, 
-	    .stButton button:hover, 
-	    .stDownloadButton button:hover, 
-	    .st-emotion-cache button:hover {{  
-	        background: linear-gradient(135deg, #1B2A41, #3B6978) !important; /* Dégradé plus foncé au survol */
-	        transform: scale(1.07) !important; /* Effet zoom léger */
-	        border-color: #16222A !important;
-	    }}
-	
-	    /* Rétablir l'affichage normal des icônes et flèches */
-	    .st-emotion-cache svg,  
-	    .st-emotion-cache i {{
-	        color: white !important;  
-	    }}
-	
-	    /* Corriger les blocs de code (code copier-coller) */
-	    pre, code , code span{{
-	        color: #00ff00 !important;  /* Texte vert clair */
-	        background-color: #2a2a2a !important; /* Fond gris foncé */
-	        font-family: 'Courier New', Courier, monospace !important;
-	        /* padding: 12px !important; */
-	        border-radius: 6px !important;
-	        /* display: block !important; */
-	        overflow-x: auto !important;  /* Permettre le scroll horizontal */
-	        white-space: pre-wrap !important;  /* Empêcher le débordement */
-	        word-wrap: break-word !important;  /* Permettre la coupure des mots */
-	    }}
+		    button, 
+		    .stButton button, 
+		    .stDownloadButton button, 
+		    .st-emotion-cache button {{  
+		        color: white !important;  /* Texte blanc pour contraste */
+		        background: linear-gradient(135deg, #2C3E50, #4CA1AF) !important; /* Dégradé bleu-gris pro */
+		        border: 2px solid #1B2A41 !important; /* Bordure gris foncé */
+		        padding: 12px 18px !important; /* Agrandir les boutons */
+		        border-radius: 8px !important; /* Coins arrondis */
+		        font-size: 16px !important; /* Texte lisible */
+		        font-weight: bold !important; /* Texte en gras */
+		        cursor: pointer !important; /* Curseur interactif */
+		        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !important; /* Ombre pour effet 3D */
+		        transition: all 0.3s ease-in-out !important; /* Animation fluide */
+		    }}
+		    /* Ajuster les boutons au survol */
+		    button:hover, 
+		    .stButton button:hover, 
+		    .stDownloadButton button:hover, 
+		    .st-emotion-cache button:hover {{  
+		        background: linear-gradient(135deg, #1B2A41, #3B6978) !important; /* Dégradé plus foncé au survol */
+		        transform: scale(1.07) !important; /* Effet zoom léger */
+		        border-color: #16222A !important;
+		    }}
+		
+		    /* Rétablir l'affichage normal des icônes et flèches */
+		    .st-emotion-cache svg,  
+		    .st-emotion-cache i {{
+		        color: white !important;  
+		    }}
+		
+		    /* Corriger les blocs de code (code copier-coller) */
+		    pre, code , code span{{
+		        color: #00ff00 !important;  /* Texte vert clair */
+		        background-color: #2a2a2a !important; /* Fond gris foncé */
+		        font-family: 'Courier New', Courier, monospace !important;
+		        /* padding: 12px !important; */
+		        border-radius: 6px !important;
+		        /* display: block !important; */
+		        overflow-x: auto !important;  /* Permettre le scroll horizontal */
+		        white-space: pre-wrap !important;  /* Empêcher le débordement */
+		        word-wrap: break-word !important;  /* Permettre la coupure des mots */
+		    }}
 	    }}
     
 	
