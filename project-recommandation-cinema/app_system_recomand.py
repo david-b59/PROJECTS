@@ -534,32 +534,33 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
     st.markdown("""
 	    <style>
-            div[data-baseweb="select"], div[data-baseweb="select"] * {
-	        border: 2px solid red !important;
-	    }
-	    /* Modifier l'apparence du selectbox */
+            /* Personnalisation du selectbox */
 	    div[data-baseweb="select"] {
-	        background-color: #2C3E50 !important; /* Fond bleu foncé */
+	        background-color: #2C3E50 !important; /* Fond bleu-gris foncé */
+	        border: 2px solid #1B2A41 !important; /* Bordure gris foncé */
 	        border-radius: 8px !important; /* Coins arrondis */
-	        padding: 5px !important; /* Espacement interne */
+	        padding: 8px !important; /* Espacement interne */
+	        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2) !important; /* Ombre subtile */
 	    }
 	
-	    /* Modifier la police du texte dans le selectbox */
-	    div[data-baseweb="select"] > div {
-	        font-family: 'Arial', sans-serif !important; /* Police personnalisée */
-	        font-size: 16px !important; /* Taille du texte */
+	    /* Modifier la police et la couleur du texte dans le selectbox */
+	    div[data-baseweb="select"] div {
+	        font-family: 'Arial', sans-serif !important; /* Police moderne */
+	        font-size: 16px !important; /* Texte plus grand */
 	        color: white !important; /* Texte blanc */
 	    }
 	
-	    /* Modifier l'apparence des options du selectbox */
+	    /* Modifier l'apparence du menu déroulant */
 	    div[data-baseweb="menu"] {
 	        background-color: #34495E !important; /* Fond des options */
 	        border-radius: 8px !important; /* Coins arrondis */
+	        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important; /* Ombre pour effet 3D */
 	    }
 	
 	    /* Modifier la couleur des options */
 	    div[data-baseweb="menu"] div {
 	        color: white !important; /* Texte blanc */
+	        padding: 8px !important;
 	    }
 	
 	    /* Effet au survol des options */
