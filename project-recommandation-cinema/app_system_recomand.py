@@ -547,11 +547,11 @@ elif tabs == 'Système de recommandation':
 	
 	    /* Modifier le menu déroulant des options */
 	    div[data-baseweb="menu"], div[data-baseweb="menu"] * {
-	        background-color: #34495E !important; /* Fond des options */
+	        background-color: white !important; /* Fond des options */
 	        border-radius: 8px !important; /* Coins arrondis */
 	        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important; /* Ombre pour effet 3D */
 	        color: white !important; /* Texte blanc */
-	        padding: 8px !important;
+	        
 	    }
 	
 	    /* Effet au survol */
@@ -573,7 +573,6 @@ elif tabs == 'Système de recommandation':
 	        div[data-baseweb="select"] {
 	            background-color: white !important; /* Assurer le fond sur mobile */
 	     	  
-	            border: 2px solid #1B2A41 !important;
 	        }
 	    }
 	    </style>
