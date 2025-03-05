@@ -140,7 +140,7 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
 		
 		    /* Modifier l'apparence des options du selectbox */
 		    div[data-baseweb="menu"] {{
-		        background-color: #34495E !important; /* Fond des options */
+		        /* background-color: #34495E !important; */ /* Fond des options */
 		        border-radius: 8px !important; /* Coins arrondis */
 		    }}
 		
