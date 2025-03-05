@@ -534,6 +534,9 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
     st.markdown("""
 	    <style>
+            div[data-baseweb="select"], div[data-baseweb="select"] * {
+	        border: 2px solid red !important;
+	    }
 	    /* Modifier l'apparence du selectbox */
 	    div[data-baseweb="select"] {
 	        background-color: #2C3E50 !important; /* Fond bleu foncé */
