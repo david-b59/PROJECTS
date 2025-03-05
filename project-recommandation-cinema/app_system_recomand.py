@@ -534,47 +534,7 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
     st.markdown("""
 	    <style>
-            /* Sélectionbox - Appliquer le style à TOUS les appareils */
-	    div[data-baseweb="select"], div[data-baseweb="select"] * {
-	        /* background-color: #2C3E50 !important; */ /* Fond bleu-gris foncé */
-	        /* border: 2px solid #1B2A41 !important; */ /* Bordure gris foncé */
-	        border-radius: 8px !important; /* Coins arrondis */
-	        /* padding: 8px !important; */ /* Espacement interne */
-	        /* color: white !important; */ /* Texte blanc */
-	        font-family: 'Arial', sans-serif !important; /* Police moderne */
-	        font-size: 16px !important; /* Texte plus grand */
-	    }
-	
-	    /* Modifier le menu déroulant des options */
-	    div[data-baseweb="menu"], div[data-baseweb="menu"] * {
-	        background-color: white !important; /* Fond des options */
-	        border-radius: 8px !important; /* Coins arrondis */
-	        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3) !important; /* Ombre pour effet 3D */
-	        color: white !important; /* Texte blanc */
-	        
-	    }
-	
-	    /* Effet au survol */
-	    div[data-baseweb="menu"] div:hover {
-	        background-color: #1B2A41 !important; /* Fond foncé au survol */
-	    }
-	
-	    /* 🔹 FORCER LE STYLE SUR MOBILE 🔹 */
-	    @supports (-webkit-touch-callout: none) {
-	        div[data-baseweb="select"] * {
-	            -webkit-appearance: none !important; /* Désactiver le style par défaut sur iOS */
-	            -moz-appearance: none !important; /* Désactiver sur Firefox Android */
-	            appearance: none !important; /* Désactiver sur les autres mobiles */
-	        }
-	    }
-	
-	    /* 🔹 FORCER LE STYLE SUR LES PETITS ÉCRANS 🔹 */
-	    @media (max-width: 768px) {
-	        div[data-baseweb="select"] {
-	            background-color: white !important; /* Assurer le fond sur mobile */
-	     	  
-	        }
-	    }
+            
 	    </style>
 	""", unsafe_allow_html=True)
 
