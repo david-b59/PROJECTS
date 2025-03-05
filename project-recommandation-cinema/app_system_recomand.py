@@ -534,7 +534,9 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
     st.markdown("""
 	    <style>
-            
+            .st-da {
+	    	background-color: rgb(240, 242, 246);
+	    }
 	    </style>
 	""", unsafe_allow_html=True)
 
