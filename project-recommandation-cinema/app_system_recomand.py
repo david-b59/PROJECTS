@@ -534,8 +534,11 @@ elif tabs == 'Système de recommandation':
     st.cache_data.clear()
     st.markdown("""
 	    <style>
-            #root > div:nth-child(1) > div.withScreencast > div > div > section.stMain.st-emotion-cache-bm2z3a.eht7o1d1 > div.stMainBlockContainer.block-container.st-emotion-cache-t1wise.eht7o1d4 > div > div > div > div:nth-child(7) > div > div > div , #root > div:nth-child(2) > div > div > div > div > div > div > ul > div, #root > div:nth-child(1) > div.withScreencast > div > div > section.stMain.st-emotion-cache-bm2z3a.eht7o1d1 > div.stMainBlockContainer.block-container.st-emotion-cache-t1wise.eht7o1d4 > div > div > div > div:nth-child(7) > div > div > div > div.st-cx.st-b1.st-ao.st-ea.st-cs.st-eb.st-dj{
+            #root > div:nth-child(1) > div.withScreencast > div > div > section.stMain.st-emotion-cache-bm2z3a.eht7o1d1 > div.stMainBlockContainer.block-container.st-emotion-cache-t1wise.eht7o1d4 > div > div > div > div:nth-child(7) > div > div > div , #root > div:nth-child(2) > div > div > div > div > div > div > ul > div{
 	    	background-color: rgb(240, 242, 246);
+	    }
+     	    #root > div:nth-child(1) > div.withScreencast > div > div > section.stMain.st-emotion-cache-bm2z3a.eht7o1d1 > div.stMainBlockContainer.block-container.st-emotion-cache-t1wise.eht7o1d4 > div > div > div > div:nth-child(7) > div > div > div > div.st-cx.st-b1.st-ao.st-ea.st-cs.st-eb.st-dj > svg {
+	  	color: black;
 	    }
 	    </style>
 	""", unsafe_allow_html=True)
