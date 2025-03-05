@@ -571,7 +571,8 @@ elif tabs == 'Système de recommandation':
 	    /* 🔹 FORCER LE STYLE SUR LES PETITS ÉCRANS 🔹 */
 	    @media (max-width: 768px) {
 	        div[data-baseweb="select"] {
-	            background-color: #2C3E50 !important; /* Assurer le fond sur mobile */
+	            background-color: white !important; /* Assurer le fond sur mobile */
+	     	  
 	            border: 2px solid #1B2A41 !important;
 	        }
 	    }
