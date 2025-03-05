@@ -124,35 +124,7 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
 	             color: black !important; 
 	        }}
 
-  		/* Modifier l'apparence du selectbox */
-		    div[data-baseweb="select"] {{
-		        background-color: #2C3E50 !important; /* Fond bleu foncé */
-		        border-radius: 8px !important; /* Coins arrondis */
-		        padding: 5px !important; /* Espacement interne */
-		    }}
-		
-		    /* Modifier la police du texte dans le selectbox */
-		    div[data-baseweb="select"] > div {{
-		        font-family: 'Arial', sans-serif !important; /* Police personnalisée */
-		        font-size: 16px !important; /* Taille du texte */
-		        color: white !important; /* Texte blanc */
-		    }}
-		
-		    /* Modifier l'apparence des options du selectbox */
-		    div[data-baseweb="menu"] {{
-		        /* background-color: #34495E !important; */ /* Fond des options */
-		        border-radius: 8px !important; /* Coins arrondis */
-		    }}
-		
-		    /* Modifier la couleur des options */
-		    div[data-baseweb="menu"] div {{
-		        color: white !important; /* Texte blanc */
-		    }}
-		
-		    /* Effet au survol des options */
-		    div[data-baseweb="menu"] div:hover {{
-		        background-color: #1B2A41 !important; /* Changement de fond au survol */
-		    }}
+  		
     
 	        /* Rétablir la couleur d'origine pour les boutons */
 		    button, 
@@ -571,6 +543,40 @@ elif tabs == 'Système de recommandation':
 
             liste_films = df_français_comedy_action['titre_original'].tolist()
 
+	    st.markdown("""
+	    <style>
+	    /* Modifier l'apparence du selectbox */
+	    div[data-baseweb="select"] {
+	        background-color: #2C3E50 !important; /* Fond bleu foncé */
+	        border-radius: 8px !important; /* Coins arrondis */
+	        padding: 5px !important; /* Espacement interne */
+	    }
+	
+	    /* Modifier la police du texte dans le selectbox */
+	    div[data-baseweb="select"] > div {
+	        font-family: 'Arial', sans-serif !important; /* Police personnalisée */
+	        font-size: 16px !important; /* Taille du texte */
+	        color: white !important; /* Texte blanc */
+	    }
+	
+	    /* Modifier l'apparence des options du selectbox */
+	    div[data-baseweb="menu"] {
+	        background-color: #34495E !important; /* Fond des options */
+	        border-radius: 8px !important; /* Coins arrondis */
+	    }
+	
+	    /* Modifier la couleur des options */
+	    div[data-baseweb="menu"] div {
+	        color: white !important; /* Texte blanc */
+	    }
+	
+	    /* Effet au survol des options */
+	    div[data-baseweb="menu"] div:hover {
+	        background-color: #1B2A41 !important; /* Changement de fond au survol */
+	    }
+	    </style>
+	""", unsafe_allow_html=True)
+	  
             # Sélection du film
             film_rechercher = st.selectbox(
                 "Sélectionnez un film pour découvrir des recommandations similaires :",
