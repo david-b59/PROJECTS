@@ -532,10 +532,7 @@ elif tabs == 'Système de recommandation':
     # Effacer les caches
     st.cache_resource.clear()
     st.cache_data.clear()
-
-    # Définition de la fonction principale du système de recommandation
-    def syst_recomand_film(url_csv_df, url_csv_X):
-	st.markdown("""
+    st.markdown("""
 	    <style>
 	    /* Modifier l'apparence du selectbox */
 	    div[data-baseweb="select"] {
@@ -568,7 +565,10 @@ elif tabs == 'Système de recommandation':
 	    }
 	    </style>
 	""", unsafe_allow_html=True)
-	    
+
+    
+    # Définition de la fonction principale du système de recommandation
+    def syst_recomand_film(url_csv_df, url_csv_X):	    
         try:
             # Chargement des données du dataset de films
             response = requests.get(url_csv_df)
