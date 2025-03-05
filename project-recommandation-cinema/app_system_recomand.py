@@ -124,7 +124,7 @@ if response.status_code == 200:  # Vérifie que la requête a réussi
 	        }}
 
   		/* modification input pout choix du film à recommander */
-		div.st-bl {{
+		div.st-bl, ul {{
 			background-color: rgb(240, 242, 246);
   		}}
     
